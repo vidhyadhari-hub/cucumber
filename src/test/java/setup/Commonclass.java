@@ -25,7 +25,7 @@ public class Commonclass {
     public static List<String> failedScenario = new ArrayList<>();
     public static Properties configProp= new Properties();
 
-   /* public static void launchbrowser(String browser){
+    public static void launchbrowser(String browser){
         if(browser.equalsIgnoreCase("chrome"))
            webDriver=new ChromeDriver();
         else if(browser.equalsIgnoreCase("safari"))
@@ -36,14 +36,14 @@ public class Commonclass {
             webDriver=new FirefoxDriver();
         webDriver.manage().window().maximize();
 
-    }*/
-   public static void launchbrowser(String env,String url) throws MalformedURLException {
+    }
+   /*public static void launchbrowser(String env,String url) throws MalformedURLException {
         webDriver = new RemoteWebDriver(
                 new URL("http://localhost:4444"),
                 new ChromeOptions()
         );
         webDriver.manage().window().maximize();
-    }
+    }*/
 
     public void openurl(String url){
         webDriver.get(url);

@@ -24,8 +24,8 @@ public class Hooks{
         configProp = new Properties();
         FileInputStream configPropFile = new FileInputStream("src/test/resources/config.properties");
         configProp.load(configPropFile);
-        //Commonclass.launchbrowser(configProp.getProperty("browser"));
-        Commonclass.launchbrowser(configProp.getProperty("env"),configProp.getProperty("url"));
+        Commonclass.launchbrowser(configProp.getProperty("browser"));
+        //Commonclass.launchbrowser(configProp.getProperty("env"),configProp.getProperty("url"));
     }
 
     @After
