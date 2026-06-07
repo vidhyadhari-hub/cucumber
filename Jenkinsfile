@@ -12,7 +12,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/your-repo.git'
+                url: 'https://github.com/vidhyadhari-hub/cucumber.git'
             }
         }
 
