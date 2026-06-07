@@ -31,8 +31,8 @@ public class loginsteps extends Commonclass {
         Properties configProp=new Properties();
         FileInputStream configPropFile=new FileInputStream("src/test/resources/config.properties");
         configProp.load(configPropFile);
-        //launchbrowser(configProp.getProperty("browser"));
-        launchbrowser(configProp.getProperty("env"),configProp.getProperty("url "));
+        launchbrowser(configProp.getProperty("browser"));
+        //launchbrowser(configProp.getProperty("env"),configProp.getProperty("url "));
    }
     @When("User opens URL {string}")
     public void user_opens_url(String url) {
