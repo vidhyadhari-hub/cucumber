@@ -6,6 +6,7 @@ pipeline {
             jdk 'Myjava'
             maven 'Mymaven'
         }
+        }
 
     stages {
 
