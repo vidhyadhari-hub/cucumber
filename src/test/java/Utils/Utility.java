@@ -14,6 +14,7 @@ import java.time.Duration;
 public class Utility extends Commonclass {
 
     public static WebElement getWebElement(By locator) {
+
         return webDriver.findElement(locator);
     }
 
@@ -23,7 +24,7 @@ public class Utility extends Commonclass {
             if (web.isDisplayed() && web.isEnabled()) {
                 web.click();
                 scenario.log("Clicked on the element::"+nameOfWebElement);
-                System.out.println("clicked on the element::" + nameOfWebElement);
+                //System.out.println("clicked on the element::" + nameOfWebElement);
             }
         } catch (Exception e) {
             scenario.log("unable to clic on the element::"+nameOfWebElement);
@@ -263,7 +264,7 @@ public class Utility extends Commonclass {
         myalert.sendKeys(textToEnter);
     }
 
-    public static void getTextFromWebElement(WebElement web, String nameoftheElement) {
+    public static String getTextFromWebElement(WebElement web, String nameoftheElement) {
         try {
             wait.until(ExpectedConditions.visibilityOf(web));
             if (web.isDisplayed() && web.isEnabled()) {
@@ -274,6 +275,7 @@ public class Utility extends Commonclass {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+        return web.getText();
     }
 
 

@@ -9,6 +9,10 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import org.apache.logging.log4j.LogManager;
+
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import setup.Commonclass;
 
@@ -22,6 +26,7 @@ import static org.junit.Assert.assertTrue;
 
 
 public class loginsteps extends Commonclass {
+    Logger logger= LogManager.getLogger(loginMethod.class);
     loginMethod objloginmethod;
     DashBoardMethods objDashBoardMethods;
     AdminMethods objAdminMethods;
@@ -41,8 +46,10 @@ public class loginsteps extends Commonclass {
     }
     @When("User enters Username as {string} and password as {string}")
     public void user_enters_username_as_and_password_as(String username, String password) {
+
         objloginmethod = new loginMethod();
         objloginmethod.enterUsername(username);
+        scenario.log("entered username");
         objloginmethod.enterpassword(password);
 
     }

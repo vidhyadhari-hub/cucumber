@@ -1,4 +1,6 @@
 Feature:login
+  Background:
+    Given User launch browser
   @sanity @TIK-890
   Scenario: Successful login with valid user credentials
     When User opens URL "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
@@ -20,14 +22,14 @@ Feature:login
     | vidhya   | vid123   |
     | vinodh   | vin123   |
   @sanity @TIK-891
-  Scenario: Successful login with valid user credentials
+  Scenario: Successful login with invalid user credentials 2
     When User opens URL "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
     And User enters Username as "Admin" and password as "admin1234"
     And User clicks login button
     Then Page Title should be displayed as "OrangeHRM"
     And clicks logout hamburger and logout link
   @sanity @TIK-892
-  Scenario: Successful login with valid user credentials
+  Scenario: Successful login with invalid user credentials 1
     When User opens URL "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
     And User enters Username as "Admin" and password as "admin1235"
     And User clicks login button

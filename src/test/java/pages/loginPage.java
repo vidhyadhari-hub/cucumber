@@ -16,5 +16,7 @@ public class loginPage {
     public WebElement password;
     @FindBy(xpath="//button[@type='submit']")
     public WebElement submit;
+    @FindBy(xpath="//p[text()='Invalid credentials']")
+    public WebElement invalid;
 
 }

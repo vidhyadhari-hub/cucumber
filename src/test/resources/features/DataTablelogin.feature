@@ -5,8 +5,8 @@ Feature:login
     And User enters Username  and password
     | Username | password|
     | Admin    | admin123 |
-    | Admin    | admin1234 |
-    | vidhya   | vid123    |
+    | Admin12    | admin123 |
+    | Admin43  | admin123   |
     And User clicks login button
     Then Page Title should be displayed as "OrangeHRM"
     And clicks logout hamburger and logout link

@@ -24,16 +24,21 @@ public class Commonclass {
     public static Scenario scenario;
     public static List<String> failedScenario = new ArrayList<>();
     public static Properties configProp= new Properties();
+    //public static ThreadLocal<WebDriver> webDriver=new ThreadLocal<>();
 
     public static void launchbrowser(String browser){
         if(browser.equalsIgnoreCase("chrome"))
            webDriver=new ChromeDriver();
+           // webDriver.set(new ChromeDriver());
         else if(browser.equalsIgnoreCase("safari"))
             webDriver=new SafariDriver();
+           // webDriver.set(new SafariDriver());
         else if(browser.equalsIgnoreCase("edge"))
             webDriver=new EdgeDriver();
+            //webDriver.set(new EdgeDriver());
         else
             webDriver=new FirefoxDriver();
+       // webDriver.set(new FirefoxDriver());
         webDriver.manage().window().maximize();
 
     }
@@ -46,8 +51,9 @@ public class Commonclass {
     }*/
 
     public void openurl(String url){
-        webDriver.get(url);
+        //webDriver.get().get(url);
         wait=new WebDriverWait(webDriver,Duration.ofSeconds(10));
+        webDriver.get(url);
     }
 
     public static void getTagId()
