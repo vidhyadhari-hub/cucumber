@@ -6,6 +6,7 @@ import Methods.loginMethod;
 import Utils.Utility;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import setup.Commonclass;
 
 import java.io.FileInputStream;
@@ -36,7 +38,7 @@ public class loginsteps extends Commonclass {
         Properties configProp=new Properties();
         FileInputStream configPropFile=new FileInputStream("src/test/resources/config.properties");
         configProp.load(configPropFile);
-        launchbrowser(configProp.getProperty("browser"));
+        launchbrowser(configProp.getProperty("env"),configProp.getProperty("browser"));
         //launchbrowser(configProp.getProperty("env"),configProp.getProperty("url "));
    }
     @When("User opens URL {string}")
@@ -109,4 +111,22 @@ public class loginsteps extends Commonclass {
     }
 
 
+    @Then("Actual result should match with {string} output and logout")
+    public void actual_Result_Should_Match_With_Output_And_Logout(String expected) {
+        if(expected.equals("OrangeHRM")){
+            Assert.assertEquals(expected,webDriver.getTitle());
+            objDashBoardMethods=new DashBoardMethods();
+            objDashBoardMethods.hamburger();
+            objDashBoardMethods.logoutnbutton();
+        }
+        else
+            Assert.assertEquals(expected,objloginmethod.invalid());
+
+    }
+
+    @Then("Actual result should match with {string}")
+    public void actual_Result_Should_Match_With(String expected) {
+        Assert.assertEquals(expected,objloginmethod.invalid());
+
+    }
 }

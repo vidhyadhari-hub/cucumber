@@ -12,7 +12,7 @@ import static setup.Commonclass.webDriver;
 public class DataDrivenLoginSteps {
     loginMethod ObjLoginMethod;
     DashBoardMethods ObjDashBoardMethod;
-    Object[][] data= ExcelUtility.getData("Login");
+    Object[][] data= ExcelUtility.getData("Login","/Users/vinodh/Documents/Trainings/cucumber/src/test/resources/TestData/LoginData.xlsx");
     @Given("User enters Username  and password and clicks submit button and tests the expected result")
     public void user_enters_username_and_password_and_clicks_submit_button() {
 

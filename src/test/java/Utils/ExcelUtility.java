@@ -8,16 +8,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ExcelUtility {
-    public static Object [][] getData(String SheetName){
+    public static Object [][] getData(String SheetName,String filepath){
         Object[][] data=null;
         try{
-            FileInputStream file=new FileInputStream("/Users/vinodh/Documents/Trainings/cucumber/src/test/resources/TestData/LoginData.xlsx");
+            FileInputStream file=new FileInputStream(filepath);
             Workbook workbook=new XSSFWorkbook(file);
             Sheet sheet=workbook.getSheet(SheetName);
             int rows=sheet.getLastRowNum();
             int cols=sheet.getRow(0).getLastCellNum();
             data=new Object[rows][cols];
-            for(int i=1;i<rows;i++) {
+            for(int i=1;i<=rows;i++) {
                 Row row = sheet.getRow(i);
                 for (int j = 0; j < cols; j++) {
                     Cell cell =row.getCell(j);

@@ -49,6 +49,7 @@ public class Hooks{
     @AfterAll
     public static void afterExection()
     {
+
         System.out.println("Failed Scenario id::"+Commonclass.failedScenario);
     }
 }

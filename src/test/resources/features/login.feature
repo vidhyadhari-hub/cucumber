@@ -14,25 +14,22 @@ Feature:login
     When User opens URL "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
     And User enters Username as "<username>" and password as "<password>"
     And User clicks login button
-    Then Page Title should be displayed as "OrangeHRM"
-    And clicks logout hamburger and logout link
+    Then Actual result should match with "<expected>" output and logout
     Examples:
-    | username | password |
-    | Admin    | admin123 |
-    | vidhya   | vid123   |
-    | vinodh   | vin123   |
+    | username | password | expected |
+    | Admin    | admin123 | OrangeHRM |
+    | vidhya   | vid123   | Invalid credentials |
+    | vinodh   | vin123   | Invalid credentials |
   @sanity @TIK-891
   Scenario: Successful login with invalid user credentials 2
     When User opens URL "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
     And User enters Username as "Admin" and password as "admin1234"
     And User clicks login button
-    Then Page Title should be displayed as "OrangeHRM"
-    And clicks logout hamburger and logout link
+    Then Actual result should match with "Invalid credentials"
   @sanity @TIK-892
   Scenario: Successful login with invalid user credentials 1
     When User opens URL "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
     And User enters Username as "Admin" and password as "admin1235"
     And User clicks login button
-    Then Page Title should be displayed as "OrangeHRM"
-    And clicks logout hamburger and logout link
+    Then Actual result should match with "Invalid credentials"
 

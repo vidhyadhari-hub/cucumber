@@ -26,19 +26,25 @@ public class Commonclass {
     public static Properties configProp= new Properties();
     //public static ThreadLocal<WebDriver> webDriver=new ThreadLocal<>();
 
-    public static void launchbrowser(String browser){
-        if(browser.equalsIgnoreCase("chrome"))
+    public static void launchbrowser(String env,String browser) throws MalformedURLException{
+        if(browser.equalsIgnoreCase("chrome") && env.equalsIgnoreCase("local"))
            webDriver=new ChromeDriver();
-           // webDriver.set(new ChromeDriver());
-        else if(browser.equalsIgnoreCase("safari"))
+
+        else if(browser.equalsIgnoreCase("safari") && env.equalsIgnoreCase("local"))
             webDriver=new SafariDriver();
-           // webDriver.set(new SafariDriver());
-        else if(browser.equalsIgnoreCase("edge"))
+
+        else if(browser.equalsIgnoreCase("edge") && env.equalsIgnoreCase("local"))
             webDriver=new EdgeDriver();
-            //webDriver.set(new EdgeDriver());
-        else
+
+        else if(browser.equalsIgnoreCase("Firefox") && env.equalsIgnoreCase("local"))
             webDriver=new FirefoxDriver();
-       // webDriver.set(new FirefoxDriver());
+        else if (env.equalsIgnoreCase("remote")){
+            webDriver = new RemoteWebDriver(
+                    new URL("http://localhost:4444"),
+                    new ChromeOptions()
+            );
+        }
+
         webDriver.manage().window().maximize();
 
     }

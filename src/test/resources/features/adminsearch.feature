@@ -1,7 +1,7 @@
 @sanity
 Feature: adminsearch
   Scenario: searching using username
-    #Given User launch browser
+    Given User launch browser
     When User opens URL "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
     And User enters Username as "Admin" and password as "admin123"
     And User clicks login button
