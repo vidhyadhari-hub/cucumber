@@ -14,8 +14,8 @@ import org.testng.annotations.DataProvider;
             "pretty",
             "html:target/cucumber-reports.html",
             "json:target/cucumber.json",
-            "rerun:target/failed_scenarios.txt",
-            "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+            "rerun:target/failed_scenarios.txt"
+
     }
 
     //tags = "@sanity"
