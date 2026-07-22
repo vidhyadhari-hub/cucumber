@@ -17,5 +17,10 @@ public class loginMethod {
     }
     public void clickloginbutton(){
         Utility.click(lp.submit,"submitbutton");
+
+    }
+    public String invalid(){
+        String actual=Utility.getTextFromWebElement(lp.invalid,"Invalid Text");
+        return actual;
     }
 }

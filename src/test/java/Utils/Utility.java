@@ -1,6 +1,7 @@
 package Utils;
 
 
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
@@ -9,11 +10,15 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import setup.Commonclass;
 
+
+import java.io.File;
 import java.time.Duration;
+import java.util.Set;
 
 public class Utility extends Commonclass {
 
     public static WebElement getWebElement(By locator) {
+
         return webDriver.findElement(locator);
     }
 
@@ -23,7 +28,7 @@ public class Utility extends Commonclass {
             if (web.isDisplayed() && web.isEnabled()) {
                 web.click();
                 scenario.log("Clicked on the element::"+nameOfWebElement);
-                System.out.println("clicked on the element::" + nameOfWebElement);
+                //System.out.println("clicked on the element::" + nameOfWebElement);
             }
         } catch (Exception e) {
             scenario.log("unable to clic on the element::"+nameOfWebElement);
@@ -160,7 +165,7 @@ public class Utility extends Commonclass {
         try {
             if (web.isEnabled() && web.isDisplayed()) {
                 JavascriptExecutor js = (JavascriptExecutor) webDriver;
-                js.executeScript("arguments[0].setAttribute(value=textToEnter);", web);
+                js.executeScript("arguments[0].setAttribute('value',arguments[1]);",web,textToEnter);
                 System.out.println("click action performed on " + nameOfTheElement + "by using js executor");
             }
         } catch (Exception e) {
@@ -207,7 +212,7 @@ public class Utility extends Commonclass {
         webDriver.switchTo().alert().sendKeys(textToEnter);
     }
 
-    public static String getTextFromAlert(WebElement searchresults, String searchResults) {
+    public static String getTextFromAlert() {
         return webDriver.switchTo().alert().getText();
     }
 
@@ -263,7 +268,7 @@ public class Utility extends Commonclass {
         myalert.sendKeys(textToEnter);
     }
 
-    public static void getTextFromWebElement(WebElement web, String nameoftheElement) {
+    public static String getTextFromWebElement(WebElement web, String nameoftheElement) {
         try {
             wait.until(ExpectedConditions.visibilityOf(web));
             if (web.isDisplayed() && web.isEnabled()) {
@@ -274,6 +279,84 @@ public class Utility extends Commonclass {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+        return web.getText();
+    }
+    public static File ScreenshotFile(WebDriver webDriver,String filelocation){
+        TakesScreenshot ts=(TakesScreenshot) webDriver;
+        File source=ts.getScreenshotAs(OutputType.FILE);
+        File target=new File(filelocation);
+        source.renameTo(target);
+        return target;
+    }
+    public static void  pressEnter(WebDriver webDriver){
+        Actions act=new Actions(webDriver);
+        act.sendKeys(Keys.ENTER).perform();
+    }
+    public static void pressTAB(WebDriver webDriver){
+        Actions act=new Actions(webDriver);
+        act.sendKeys(Keys.TAB).perform();
+    }
+    public static void pressEscape(WebDriver webDriver){
+        Actions act=new Actions(webDriver);
+        act.sendKeys(Keys.ESCAPE).perform();
+    }
+    public static void pressArrowDown(WebDriver webDriver){
+        Actions act=new Actions(webDriver);
+        act.sendKeys(Keys.ARROW_DOWN).perform();
+    }
+    public static void pressArrowUp(WebDriver webDriver){
+        Actions act=new Actions(webDriver);
+        act.sendKeys(Keys.ARROW_UP).perform();
+    }
+    public static void pressBackSpace(WebDriver webDriver){
+        Actions act=new Actions(webDriver);
+        act.sendKeys(Keys.BACK_SPACE).perform();
+    }
+    public static void pressDelete(WebDriver webDriver){
+        Actions act=new Actions(webDriver);
+        act.sendKeys(Keys.DELETE).perform();
+    }
+    public static void selectAll(WebDriver webDriver){
+        Actions act=new Actions(webDriver);
+        act.keyDown(Keys.COMMAND).sendKeys("a").keyUp(Keys.COMMAND).perform();
+    }
+    public static void copy(WebDriver webDriver){
+        Actions act=new Actions(webDriver);
+        act.keyDown(Keys.COMMAND).sendKeys("c").keyUp(Keys.COMMAND).perform();
+    }
+    public static void paste(WebDriver webDriver){
+        Actions act=new Actions(webDriver);
+        act.keyDown(Keys.COMMAND).sendKeys("v").keyUp(Keys.COMMAND).perform();
+    }
+    public static void cut(WebDriver webDriver){
+        Actions act=new Actions(webDriver);
+        act.keyDown(Keys.COMMAND).sendKeys("x").keyUp(Keys.COMMAND).perform();
+    }
+    public static void switchToWindow(WebDriver webDriver,String windowTitle){
+        Set<String>windows=webDriver.getWindowHandles();
+        for(String window:windows){
+            if(windowTitle.equals(webDriver.getTitle()))
+                break;
+        }
+    }
+    public static void closeCurrentWindow(WebDriver webDriver){
+        webDriver.close();
+    }
+    public static void switchToParentWindow(WebDriver webDriver){
+        String parent= webDriver.getWindowHandle();
+        webDriver.switchTo().window(parent);
+    }
+    public static void refreshPage(WebDriver webDriver){
+        webDriver.navigate().refresh();
+    }
+    public static void navigateBack(WebDriver webDriver){
+        webDriver.navigate().back();
+    }
+    public static void navigateForward(WebDriver webDriver){
+        webDriver.navigate().forward();
+    }
+    public static void navigateToURL(WebDriver webDriver,String URL){
+        webDriver.navigate().to(URL);
     }
 
 

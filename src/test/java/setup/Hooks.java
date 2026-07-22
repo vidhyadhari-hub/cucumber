@@ -4,6 +4,8 @@ import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,12 +21,12 @@ public class Hooks{
     @Before
     public void launch(Scenario scenario) throws IOException {
         System.out.println("Scenario name::" + scenario.getName());
-        System.out.println("Scenario Tagname::" + scenario.getSourceTagNames().toArray()[1]);
+        //System.out.println("Scenario Tagname::" + scenario.getSourceTagNames().toArray()[1]);
         Commonclass.scenario = scenario;
-        configProp = new Properties();
-        FileInputStream configPropFile = new FileInputStream("src/test/resources/config.properties");
-        configProp.load(configPropFile);
-        Commonclass.launchbrowser(configProp.getProperty("browser"));
+        //configProp = new Properties();
+        //FileInputStream configPropFile = new FileInputStream("src/test/resources/config.properties");
+        //configProp.load(configPropFile);
+        //Commonclass.launchbrowser(configProp.getProperty("browser"));
         //Commonclass.launchbrowser(configProp.getProperty("env"),configProp.getProperty("url"));
     }
 
@@ -33,8 +35,11 @@ public class Hooks{
     {
 
         if(scenario.isFailed()) {
+            byte[] screenshot=((TakesScreenshot)webDriver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot,"image/png",scenario.getName());
             System.out.println("Scenario is failed::");
             Commonclass.getTagId();
+
         }
         else
             System.out.println("Scenario ::"+scenario +" got passed");
@@ -44,6 +49,7 @@ public class Hooks{
     @AfterAll
     public static void afterExection()
     {
+
         System.out.println("Failed Scenario id::"+Commonclass.failedScenario);
     }
 }

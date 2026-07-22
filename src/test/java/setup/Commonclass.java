@@ -24,16 +24,27 @@ public class Commonclass {
     public static Scenario scenario;
     public static List<String> failedScenario = new ArrayList<>();
     public static Properties configProp= new Properties();
+    //public static ThreadLocal<WebDriver> webDriver=new ThreadLocal<>();
 
-    public static void launchbrowser(String browser){
-        if(browser.equalsIgnoreCase("chrome"))
+    public static void launchbrowser(String env,String browser) throws MalformedURLException{
+        if(browser.equalsIgnoreCase("chrome") && env.equalsIgnoreCase("local"))
            webDriver=new ChromeDriver();
-        else if(browser.equalsIgnoreCase("safari"))
+
+        else if(browser.equalsIgnoreCase("safari") && env.equalsIgnoreCase("local"))
             webDriver=new SafariDriver();
-        else if(browser.equalsIgnoreCase("edge"))
+
+        else if(browser.equalsIgnoreCase("edge") && env.equalsIgnoreCase("local"))
             webDriver=new EdgeDriver();
-        else
+
+        else if(browser.equalsIgnoreCase("Firefox") && env.equalsIgnoreCase("local"))
             webDriver=new FirefoxDriver();
+        else if (env.equalsIgnoreCase("remote")){
+            webDriver = new RemoteWebDriver(
+                    new URL("http://localhost:4444"),
+                    new ChromeOptions()
+            );
+        }
+
         webDriver.manage().window().maximize();
 
     }
@@ -46,8 +57,9 @@ public class Commonclass {
     }*/
 
     public void openurl(String url){
-        webDriver.get(url);
+        //webDriver.get().get(url);
         wait=new WebDriverWait(webDriver,Duration.ofSeconds(10));
+        webDriver.get(url);
     }
 
     public static void getTagId()

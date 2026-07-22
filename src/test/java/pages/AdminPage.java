@@ -17,5 +17,7 @@ public class AdminPage extends Commonclass {
     public WebElement searchresults;
     public AdminPage(WebDriver webDriver)
     {
+
         PageFactory.initElements(webDriver,this);
-    }}
+    }
+}
